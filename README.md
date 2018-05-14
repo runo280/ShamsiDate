@@ -1,12 +1,16 @@
 # ShamsiDate
 Shamsi date on lockscreen via Xposed framework
 
+* There is no Activity or widget just activate it in Xposed Install App.
 * It's just a simple project for personal use.
 * It should works on Stock,Vanilla & Pure Android versions.
 * It's Tested on Lineage 14.1 (Honor 5X) and Lollipop 5.1 (Genymotion).
 
 ## Screenshots
 ![](screenshot/Screenshot_20180514-141854.png)
+
+## Downlaod
+Downlaod `apk` form [here](https://github.com/runo280/ShamsiDate/releases)
 
 ## Credits
 * [Xposed framework](https://forum.xda-developers.com/showthread.php?t=3034811)
