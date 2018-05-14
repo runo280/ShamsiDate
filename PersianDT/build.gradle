@@ -1,0 +1,8 @@
+apply plugin: 'java-library'
+
+/**
+ https://github.com/abbashosseini/PersianDT
+ **/
+
+sourceCompatibility = "1.8"
+targetCompatibility = "1.8"
