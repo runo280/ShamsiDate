@@ -8,4 +8,5 @@
         به همین دلیل از نسخه ۶ اندروید، برنامه نیازمند دسترسی کارت حافظه می باشد.\n\n
         در صورت نیاز میتوانید یک فونت دلخواه را با این فایل جایگزین و بعد از راه اندازی مجدد دستگاه تغییر را مشاهده کنید.
     </string>
+    <string name="about">Source code available at:\nhttps://github.com/runo280/ShamsiDate\n</string>
 </resources>

@@ -31,6 +31,15 @@
         android:padding="8dp"
         android:text="@string/info" />
 
+    <TextView
+        android:id="@+id/tvAbout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:autoLink="web"
+        android:gravity="bottom"
+        android:padding="8dp"
+        android:text="@string/about" />
+
     <!--<CheckBox
         android:padding="8dp"
         android:id="@+id/hideLauncherIconCheckBox"
