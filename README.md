@@ -9,10 +9,12 @@ Shamsi date on lockscreen via Xposed framework
 ## Screenshots
 
 LockScreen
+
 ![](screenshot/device-2019-01-09-105338.png)
 
 
 StatusBar
+
 ![](screenshot/device-2019-01-09-105358.png)
 
 ## Downlaod
