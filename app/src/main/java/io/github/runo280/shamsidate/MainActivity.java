@@ -1,4 +1,4 @@
-package ir.runo.shamsidate;
+package io.github.runo280.shamsidate;
 
 import android.Manifest;
 import android.app.Activity;

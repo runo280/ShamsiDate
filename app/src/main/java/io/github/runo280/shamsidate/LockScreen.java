@@ -1,4 +1,4 @@
-package ir.runo.shamsidate;
+package io.github.runo280.shamsidate;
 
 import android.content.Context;
 import android.widget.TextClock;

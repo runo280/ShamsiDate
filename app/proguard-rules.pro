@@ -20,4 +20,4 @@
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
 
--keep public class ir.runo.shamsidate.LockScreen
+-keep public class io.github.runo280.shamsidate.LockScreen

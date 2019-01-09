@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="ir.runo.shamsidate">
+    package="io.github.runo280.shamsidate">
 
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
@@ -24,7 +24,7 @@
             android:name="xposedminversion"
             android:value="89" />
 
-        <activity android:name=".MainActivity">
+        <activity android:name="io.github.runo280.shamsidate.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
