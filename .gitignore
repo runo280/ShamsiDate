@@ -4,6 +4,9 @@
 *.apk
 *.ap_
 
+*.jks
+sign.properties
+
 # Files for the ART/Dalvik VM
 *.dex
 
