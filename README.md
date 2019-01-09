@@ -23,6 +23,7 @@ Downlaod `apk` form [here](https://github.com/runo280/ShamsiDate/releases)
 ## Credits
 * [Xposed framework](https://forum.xda-developers.com/showthread.php?t=3034811)
 * [PesianDate for JAVA](https://github.com/abbashosseini/PersianDT)
+* [Vazir font](https://github.com/rastikerdar/vazir-font)
 
 ## License
     MIT License
