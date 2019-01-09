@@ -1,3 +1,11 @@
 <resources>
     <string name="app_name">ShamsiDate</string>
+    <string name="date">تاریخ</string>
+
+    <string name="info">
+        برای عملکرد صحیح برنامه نیاز هست تا فونت پیشفرض برنامه در مسیر زیر کپی شود:\n
+        /SDCARD/Android/ShamsiDateFont.ttf\n\n
+        به همین دلیل از نسخه ۶ اندروید، برنامه نیازمند دسترسی کارت حافظه می باشد.\n\n
+        در صورت نیاز میتوانید یک فونت دلخواه را با این فایل جایگزین و بعد از راه اندازی مجدد دستگاه تغییر را مشاهده کنید.
+    </string>
 </resources>

@@ -6,14 +6,32 @@ android {
         applicationId "ir.runo.shamsidate"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
-        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+        versionCode 2
+        versionName "1.1"
     }
+
+    Properties keystoreProperties = new Properties()
+    keystoreProperties.load(new FileInputStream(file(rootProject.file("sign.properties"))))
+
+    signingConfigs {
+        release {
+            storeFile file(keystoreProperties["release_keystore_path"])
+            storePassword keystoreProperties["release_keystore_password"]
+            keyAlias keystoreProperties["release_key_alias"]
+            keyPassword keystoreProperties["release_key_alias_password"]
+        }
+    }
+
     buildTypes {
         release {
-            minifyEnabled false
+            minifyEnabled true
+            shrinkResources true
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
+        }
+
+        debug {
+            applicationIdSuffix '.debug'
         }
     }
     compileOptions {
@@ -22,8 +40,11 @@ android {
     }
 }
 
+
+
 dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':PersianDT')
     compileOnly 'de.robv.android.xposed:api:82'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }
