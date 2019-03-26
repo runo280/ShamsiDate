@@ -1,6 +1,7 @@
 package io.github.runo280.shamsidate;
 
 import android.content.Context;
+import android.os.Build;
 import android.widget.TextClock;
 import android.widget.TextView;
 
@@ -22,15 +23,11 @@ public class LockScreen implements IXposedHookLoadPackage {
         if (!lpparam.packageName.equals("com.android.systemui"))
             return;
 
-        XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView",
-                lpparam.classLoader,
-                "getOwnerInfo",
-                new XC_MethodReplacement() {
-                    @Override
-                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
-                        return Utils.getPersianDate();
-                    }
-                });
+        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P)
+            setDateApi27(lpparam);
+        else
+            setDateApi28(lpparam);
+
 
         XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView", lpparam.classLoader, "refreshTime", new XC_MethodHook() {
 
@@ -69,5 +66,30 @@ public class LockScreen implements IXposedHookLoadPackage {
                 }
             }
         });
+    }
+
+    private void setDateApi27(XC_LoadPackage.LoadPackageParam lpparam) {
+        XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView",
+                lpparam.classLoader,
+                "getOwnerInfo",
+                new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        return Utils.getPersianDate();
+                    }
+                });
+    }
+
+    private void setDateApi28(XC_LoadPackage.LoadPackageParam lpparam) {
+        XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView",
+                lpparam.classLoader,
+                "updateOwnerInfo", new XC_MethodReplacement() {
+                    @Override
+                    protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                        TextView owner = (TextView) XposedHelpers.getObjectField(param.thisObject, "mOwnerInfo");
+                        owner.setText(Utils.getPersianDate());
+                        return null;
+                    }
+                });
     }
 }
