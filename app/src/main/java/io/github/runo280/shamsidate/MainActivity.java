@@ -108,7 +108,7 @@ public class MainActivity extends Activity {
         clock.setTextColor(darkGreen);
         tvDate.setTextColor(darkGreen);
 
-        clock.setTypeface(Utils.getClockTypeFace(this));
-        tvDate.setTypeface(Utils.getClockTypeFace(this));
+        clock.setTypeface(Utils.getFarsiTypeFace(this));
+        tvDate.setTypeface(Utils.getTypeFace(this));
     }
 }

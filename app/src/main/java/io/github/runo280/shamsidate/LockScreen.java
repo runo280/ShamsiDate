@@ -1,13 +1,12 @@
 package io.github.runo280.shamsidate;
 
 import android.content.Context;
-import android.os.Build;
+import android.view.View;
 import android.widget.TextClock;
 import android.widget.TextView;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedBridge;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
@@ -23,10 +22,10 @@ public class LockScreen implements IXposedHookLoadPackage {
         if (!lpparam.packageName.equals("com.android.systemui"))
             return;
 
-        if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P)
+        /*if (Build.VERSION.SDK_INT < Build.VERSION_CODES.P)
             setDateApi27(lpparam);
         else
-            setDateApi28(lpparam);
+            setDateApi28(lpparam);*/
 
 
         XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView", lpparam.classLoader, "refreshTime", new XC_MethodHook() {
@@ -40,8 +39,7 @@ public class LockScreen implements IXposedHookLoadPackage {
                     Context context = clock.getContext();
 
                     if (Utils.fontIsPresent(context)) {
-                        clock.setTypeface(Utils.getClockTypeFace(context));
-                        ownerInfo.setTypeface(Utils.getClockTypeFace(context));
+                        clock.setTypeface(Utils.getFarsiTypeFace(context));
                     } else {
                         XposedBridge.log("Font not found!");
                     }
@@ -49,6 +47,15 @@ public class LockScreen implements IXposedHookLoadPackage {
                 } catch (Throwable t) {
                     XposedBridge.log(t);
                 }
+            }
+        });
+
+        XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView", lpparam.classLoader, "onFinishInflate", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                super.afterHookedMethod(param);
+                View[] mVisibleInDoze = (View[]) XposedHelpers.getObjectField(param.thisObject, "mVisibleInDoze");
+                mVisibleInDoze = new View[]{};
             }
         });
 
@@ -60,15 +67,36 @@ public class LockScreen implements IXposedHookLoadPackage {
                 Context context = tv.getContext();
 
                 if (Utils.fontIsPresent(context)) {
-                    tv.setTypeface(Utils.getClockTypeFace(context));
+                    tv.setTypeface(Utils.getFarsiTypeFace(context));
                 } else {
                     XposedBridge.log("Font not found!");
                 }
             }
         });
+
+        XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.policy.DateView", lpparam.classLoader, "updateClock", new XC_MethodHook() {
+            @Override
+            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
+                TextView tv = (TextView) param.thisObject;
+
+                Context context = tv.getContext();
+
+                if (Utils.fontIsPresent(context)) {
+                    tv.setTypeface(Utils.getTypeFace(context));
+                } else {
+                    XposedBridge.log("Font not found!");
+                }
+
+                String dateEn = (String) XposedHelpers.getObjectField(param.thisObject, "mLastText");
+
+                tv.setText(dateEn + " \uD83D\uDCC5 " + Utils.getPersianDateShort());
+
+
+            }
+        });
     }
 
-    private void setDateApi27(XC_LoadPackage.LoadPackageParam lpparam) {
+    /*private void setDateApi27(XC_LoadPackage.LoadPackageParam lpparam) {
         XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView",
                 lpparam.classLoader,
                 "getOwnerInfo",
@@ -91,5 +119,5 @@ public class LockScreen implements IXposedHookLoadPackage {
                         return null;
                     }
                 });
-    }
+    }*/
 }

@@ -25,9 +25,13 @@ import androidx.core.graphics.ColorUtils;
 public class Utils {
 
     private static Typeface font = null;
+    private static Typeface farsiFont = null;
     private static String fontPath = Environment.getExternalStorageDirectory().getAbsolutePath() +
-            "/Android/ShamsiDateFont.ttf";
-    private static String fontFileName = "Vazir_Medium_FD.ttf";
+            "/Android/ShamsiFont.ttf";
+    private static String FarsifontPath = Environment.getExternalStorageDirectory().getAbsolutePath() +
+            "/Android/ShamsiFarsiFont.ttf";
+    private static String fontFileName = "Vazir_Medium.ttf";
+    private static String FarsifontFileName = "Vazir_Medium_FD.ttf";
 
     private static String getFormat(Calendar calendar) {
         return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
@@ -36,6 +40,11 @@ public class Utils {
     public static String getPersianDate() {
         Calendar calendar = Calendar.getInstance();
         return generate(getFormat(calendar));
+    }
+
+    public static String getPersianDateShort() {
+        Calendar calendar = Calendar.getInstance();
+        return generateShort(getFormat(calendar));
     }
 
     private static String generate(String format) {
@@ -50,7 +59,25 @@ public class Utils {
 
     }
 
-    public static Typeface getClockTypeFace(Context context) {
+    private static String generateShort(String format) {
+        Generate generate = PersianDT
+                .Instance()
+                .generate(format, "{DATE}").Separator("-");
+        return String.format(Locale.forLanguageTag("fa"), "%s، %d %s",
+                generate.getDayName(),
+                generate.getDayDigit(),
+                generate.getJustMonthName());
+
+    }
+
+    public static Typeface getFarsiTypeFace(Context context) {
+        Log.d("FONT", FarsifontPath);
+        File fontFile = new File(FarsifontPath);
+        if (farsiFont == null)
+            farsiFont = Typeface.createFromFile(fontFile);
+        return farsiFont;
+    }
+    public static Typeface getTypeFace(Context context) {
         Log.d("FONT", fontPath);
         File fontFile = new File(fontPath);
         if (font == null)
@@ -60,19 +87,23 @@ public class Utils {
 
     public static boolean fontIsPresent(Context context) {
         File fontFile = new File(fontPath);
+        File FarsifontFile = new File(FarsifontPath);
         if (!fontFile.exists()) {
             FileUtils.copyAssets(context, fontFileName, fontPath);
         }
-        return fontFile.exists();
+        if (!FarsifontFile.exists()) {
+            FileUtils.copyAssets(context, FarsifontFileName, FarsifontPath);
+        }
+        return fontFile.exists() && FarsifontFile.exists();
     }
 
-    public static void hideLauncherIcon(Context context, boolean hide) {
+    /*public static void hideLauncherIcon(Context context, boolean hide) {
         int status = hide ? PackageManager.COMPONENT_ENABLED_STATE_DISABLED : PackageManager.COMPONENT_ENABLED_STATE_ENABLED;
         PackageManager p = context.getPackageManager();
         ComponentName componentName = new ComponentName(context, MainActivity.class);
         p.setComponentEnabledSetting(componentName, status, PackageManager.DONT_KILL_APP);
         p.getComponentEnabledSetting(componentName);
-    }
+    }*/
 
     public static int makeColorDarker(int baseColor, float ratio) {
         return ColorUtils.blendARGB(baseColor, Color.BLACK, ratio);
