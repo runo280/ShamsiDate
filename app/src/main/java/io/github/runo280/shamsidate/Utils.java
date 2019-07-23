@@ -1,12 +1,12 @@
 package io.github.runo280.shamsidate;
 
-import android.content.ComponentName;
 import android.content.Context;
-import android.content.pm.PackageManager;
 import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Environment;
 import android.util.Log;
+
+import androidx.core.graphics.ColorUtils;
 
 import com.hosseini.persian.dt.PersianDT;
 import com.hosseini.persian.dt.PersianDate.Generate;
@@ -16,13 +16,11 @@ import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
-import androidx.core.graphics.ColorUtils;
-
 /**
  * Created by runo280 on 3/13/18.
  */
 
-public class Utils {
+class Utils {
 
     private static Typeface font = null;
     private static Typeface farsiFont = null;
@@ -30,19 +28,17 @@ public class Utils {
             "/Android/ShamsiFont.ttf";
     private static String FarsifontPath = Environment.getExternalStorageDirectory().getAbsolutePath() +
             "/Android/ShamsiFarsiFont.ttf";
-    private static String fontFileName = "Vazir_Medium.ttf";
-    private static String FarsifontFileName = "Vazir_Medium_FD.ttf";
 
     private static String getFormat(Calendar calendar) {
-        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(calendar.getTime());
+        return new SimpleDateFormat("yyyy-MM-dd HH:mm:ss", Locale.US).format(calendar.getTime());
     }
 
-    public static String getPersianDate() {
+    static String getPersianDate() {
         Calendar calendar = Calendar.getInstance();
         return generate(getFormat(calendar));
     }
 
-    public static String getPersianDateShort() {
+    static String getPersianDateShort() {
         Calendar calendar = Calendar.getInstance();
         return generateShort(getFormat(calendar));
     }
@@ -70,14 +66,15 @@ public class Utils {
 
     }
 
-    public static Typeface getFarsiTypeFace(Context context) {
+    static Typeface getFarsiTypeFace(Context context) {
         Log.d("FONT", FarsifontPath);
         File fontFile = new File(FarsifontPath);
         if (farsiFont == null)
             farsiFont = Typeface.createFromFile(fontFile);
         return farsiFont;
     }
-    public static Typeface getTypeFace(Context context) {
+
+    static Typeface getTypeFace(Context context) {
         Log.d("FONT", fontPath);
         File fontFile = new File(fontPath);
         if (font == null)
@@ -85,14 +82,16 @@ public class Utils {
         return font;
     }
 
-    public static boolean fontIsPresent(Context context) {
+    static boolean fontIsPresent(Context context) {
         File fontFile = new File(fontPath);
         File FarsifontFile = new File(FarsifontPath);
         if (!fontFile.exists()) {
+            String fontFileName = "Vazir_Medium.ttf";
             FileUtils.copyAssets(context, fontFileName, fontPath);
         }
         if (!FarsifontFile.exists()) {
-            FileUtils.copyAssets(context, FarsifontFileName, FarsifontPath);
+            String farsifontFileName = "Vazir_Medium_FD.ttf";
+            FileUtils.copyAssets(context, farsifontFileName, FarsifontPath);
         }
         return fontFile.exists() && FarsifontFile.exists();
     }
@@ -105,7 +104,7 @@ public class Utils {
         p.getComponentEnabledSetting(componentName);
     }*/
 
-    public static int makeColorDarker(int baseColor, float ratio) {
+    static int makeColorDarker(int baseColor, float ratio) {
         return ColorUtils.blendARGB(baseColor, Color.BLACK, ratio);
     }
 }
