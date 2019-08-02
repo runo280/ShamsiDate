@@ -1,14 +1,9 @@
 # ShamsiDate
-Shamsi date on lockscreen via Xposed framework
+Display Shamsi date on LockScreen & NotificationDrawer with Persian digits font via Xposed framework
 
-* ~~There is no Activity or widget just activate it in Xposed Installer App.~~
-* It's just a simple project for personal use.
-* It should works on Stock,Vanilla & Pure Android versions.
-* It's tested on:
-     * Lineage 14.1 (Honor 5X)
-     * Lineage 15.1 (Honor 5X)
-     * AOSiP 9.0 (Honor 5X)
-     * Lollipop 5.1 (Genymotion).
+* Just for personal use
+* LineageOS 15.1 support only
+* It might works on Stock,Vanilla & Pure Android versions
 
 ## Screenshots
 
@@ -25,7 +20,7 @@ StatusBar
 ![](screenshot/device-2019-01-09-105358.png)
 
 ## Downlaod
-Downlaod `apk` form [here](https://github.com/runo280/ShamsiDate/releases)
+Downlaod `apk` form [release page](https://github.com/runo280/ShamsiDate/releases) or from [Xposed Module Repository](https://repo.xposed.info/module/io.github.runo280.shamsidate)
 
 ## Credits
 * [Xposed framework](https://forum.xda-developers.com/showthread.php?t=3034811)
