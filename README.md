@@ -1,8 +1,7 @@
 # ShamsiDate
 Display Shamsi date on LockScreen & NotificationDrawer with Persian digits font via Xposed framework
 
-* Just for personal use
-* LineageOS 15.1 support only
+* This project created for personal use, so LineageOS 15.1 support only
 * It might works on Stock,Vanilla & Pure Android versions
 
 ## Screenshots
