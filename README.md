@@ -1,30 +1,7 @@
-# ShamsiDate
-Display Shamsi date on LockScreen & NotificationDrawer with Persian digits font via Xposed framework
+# ShamsiDate for Lineage
+(Lineage 15.1)[https://github.com/runo280/ShamsiDate/tree/LOS15.1]
+(Lineage 16.0)[https://github.com/runo280/ShamsiDate/tree/LOS16]
 
-* This project created for personal use, so LineageOS 15.1 support only
-* It might works on Stock,Vanilla & Pure Android versions
-
-## Screenshots
-
-LockScreen
-
-![](screenshot/device-2019-07-22-211823.png)
-
-Notification drawer
-
-![](screenshot/device-2019-07-22-211846.png)
-
-StatusBar
-
-![](screenshot/device-2019-01-09-105358.png)
-
-## Downlaod
-Downlaod `apk` form [release page](https://github.com/runo280/ShamsiDate/releases) or from [Xposed Module Repository](https://repo.xposed.info/module/io.github.runo280.shamsidate)
-
-## Credits
-* [Xposed framework](https://forum.xda-developers.com/showthread.php?t=3034811)
-* [PesianDate for JAVA](https://github.com/abbashosseini/PersianDT)
-* [Vazir font](https://github.com/rastikerdar/vazir-font)
 
 ## License
     MIT License
