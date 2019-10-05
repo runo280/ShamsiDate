@@ -1,6 +1,7 @@
 # ShamsiDate for Lineage
-(Lineage 15.1)[https://github.com/runo280/ShamsiDate/tree/LOS15.1]
-(Lineage 16.0)[https://github.com/runo280/ShamsiDate/tree/LOS16]
+[Lineage 15.1](https://github.com/runo280/ShamsiDate/tree/LOS15.1)
+
+[Lineage 16.0](https://github.com/runo280/ShamsiDate/tree/LOS16)
 
 
 ## License
