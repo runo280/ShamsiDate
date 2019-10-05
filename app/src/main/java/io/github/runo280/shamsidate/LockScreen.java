@@ -1,79 +1,58 @@
 package io.github.runo280.shamsidate;
 
-import android.content.Context;
-import android.widget.TextClock;
+import android.icu.text.DateFormat;
+import android.icu.text.DisplayContext;
 import android.widget.TextView;
+
+import java.util.Date;
+import java.util.Locale;
 
 import de.robv.android.xposed.IXposedHookLoadPackage;
 import de.robv.android.xposed.XC_MethodHook;
-import de.robv.android.xposed.XposedBridge;
+import de.robv.android.xposed.XC_MethodReplacement;
 import de.robv.android.xposed.XposedHelpers;
 import de.robv.android.xposed.callbacks.XC_LoadPackage;
 
 /**
- * Created by runo280 on 3/13/18.
+ * Created by runo280
  */
 
 public class LockScreen implements IXposedHookLoadPackage {
+
 
     @Override
     public void handleLoadPackage(XC_LoadPackage.LoadPackageParam lpparam) throws Throwable {
         if (!lpparam.packageName.equals("com.android.systemui"))
             return;
 
-        XposedHelpers.findAndHookMethod("com.android.keyguard.KeyguardStatusView", lpparam.classLoader, "refreshTime", new XC_MethodHook() {
-
+        // LockScreen
+        XposedHelpers.findAndHookMethod("com.android.systemui.keyguard.KeyguardSliceProvider", lpparam.classLoader, "getFormattedDate", new XC_MethodReplacement() {
             @Override
-            protected void beforeHookedMethod(MethodHookParam param) throws Throwable {
-                try {
-                    TextClock clock = (TextClock) XposedHelpers.getObjectField(param.thisObject, "mClockView");
-
-                    Context context = clock.getContext();
-
-                    if (Utils.fontIsPresent(context)) {
-                        clock.setTypeface(Utils.getFarsiTypeFace(context));
-                    } else {
-                        XposedBridge.log("Font not found!");
-                    }
-
-                } catch (Throwable t) {
-                    XposedBridge.log(t);
+            protected Object replaceHookedMethod(MethodHookParam param) throws Throwable {
+                DateFormat dateFormat = (DateFormat) XposedHelpers.getObjectField(param.thisObject, "mDateFormat");
+                String str = (String) XposedHelpers.getObjectField(param.thisObject, "mDatePattern");
+                Date date = (Date) XposedHelpers.getObjectField(param.thisObject, "mCurrentTime");
+                if (dateFormat == null) {
+                    dateFormat = DateFormat.getInstanceForSkeleton(str, Locale.getDefault());
+                    dateFormat.setContext(DisplayContext.CAPITALIZATION_FOR_STANDALONE);
                 }
+                date.setTime(System.currentTimeMillis());
+                return String.format("%s %s %s", dateFormat.format(date), "◼", Utils.getPersianDateShort());
+
             }
         });
 
-        XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.policy.Clock", lpparam.classLoader, "updateClock", new XC_MethodHook() {
-            @Override
-            protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                TextView tv = (TextView) param.thisObject;
-
-                Context context = tv.getContext();
-
-                if (Utils.fontIsPresent(context)) {
-                    tv.setTypeface(Utils.getFarsiTypeFace(context));
-                } else {
-                    XposedBridge.log("Font not found!");
-                }
-            }
-        });
-
+        // NotificationDrawer
         XposedHelpers.findAndHookMethod("com.android.systemui.statusbar.policy.DateView", lpparam.classLoader, "updateClock", new XC_MethodHook() {
             @Override
             protected void afterHookedMethod(MethodHookParam param) throws Throwable {
-                TextView tv = (TextView) param.thisObject;
+                TextView textView = (TextView) param.thisObject;
+                String date = (String) XposedHelpers.getObjectField(param.thisObject, "mLastText");
+                textView.setText(String.format("%s | %s", date, Utils.getPersianDateShort()));
 
-                Context context = tv.getContext();
-
-                if (Utils.fontIsPresent(context)) {
-                    tv.setTypeface(Utils.getTypeFace(context));
-                } else {
-                    XposedBridge.log("Font not found!");
-                }
-
-                String dateEn = (String) XposedHelpers.getObjectField(param.thisObject, "mLastText");
-
-                tv.setText(String.format("%s \uD83D\uDCC5 %s", dateEn, Utils.getPersianDateShort()));
             }
         });
+
+
     }
 }

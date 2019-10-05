@@ -3,9 +3,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="io.github.runo280.shamsidate">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-    <uses-permission-sdk-23 android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -19,18 +16,10 @@
             android:value="true" />
         <meta-data
             android:name="xposeddescription"
-            android:value="Adds Shamsi date to lockscreen" />
+            android:value="ShamsiDate for Lockscreen and NotificationDrawer on LOS 16.0" />
         <meta-data
             android:name="xposedminversion"
             android:value="89" />
-
-        <activity android:name="io.github.runo280.shamsidate.MainActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
     </application>
 
 </manifest>
