@@ -1,4 +1,4 @@
-# ShamsiDate
+# ShamsiDate for LineageOS 16.0
 Display Shamsi date on LockScreen & NotificationDrawer  via Xposed framework
 
 * This project created for personal use, so LineageOS 16.0 support only
