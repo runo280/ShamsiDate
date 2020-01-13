@@ -1,13 +1,14 @@
 apply plugin: 'com.android.application'
 
 android {
-    compileSdkVersion 28
+    compileSdkVersion 29
+    buildToolsVersion "29.0.2"
     defaultConfig {
         applicationId "io.github.runo280.shamsidate"
-        minSdkVersion 28
-        targetSdkVersion 28
-        versionCode 7
-        versionName "2.0_LOS16"
+        minSdkVersion 26
+        targetSdkVersion 29
+        versionCode 8
+        versionName "3.0 for Pie & Q"
     }
 
     Properties keystoreProperties = new Properties()
@@ -52,5 +53,5 @@ dependencies {
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation project(':PersianDT')
     compileOnly 'de.robv.android.xposed:api:82'
-    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
+//    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
 }

@@ -10,7 +10,6 @@ import java.util.Locale;
 /**
  * Created by runo280
  */
-
 class Utils {
 
     private static String getFormat(Calendar calendar) {

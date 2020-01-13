@@ -1,7 +1,7 @@
-# ShamsiDate for LineageOS 16.0
-Display Shamsi date on LockScreen & NotificationDrawer  via Xposed framework
+# ShamsiDate for LineageOS 16.0 & 17.0
+Display Shamsi date on LockScreen & NotificationDrawer via Xposed framework
 
-* This project created for personal use, so LineageOS 16.0 support only
+* This project created for personal use, so LineageOS 16.0 & 17.0 support only
 * It might works on Stock,Vanilla & Pure Android versions
 
 ## Screenshots
@@ -25,7 +25,7 @@ Downlaod `apk` form [release page](https://github.com/runo280/ShamsiDate/release
 ## License
     MIT License
     
-    Copyright (c) 2018 Ruhollah Nosrati
+    Copyright (c) 2019 runo280
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal

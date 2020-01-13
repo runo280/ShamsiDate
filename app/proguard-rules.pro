@@ -21,3 +21,4 @@
 #-renamesourcefileattribute SourceFile
 
 -keep public class io.github.runo280.shamsidate.LockScreen
+-keep public class io.github.runo280.shamsidate.NotificationDrawer
