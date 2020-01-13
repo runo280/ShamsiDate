@@ -1,13 +1,13 @@
 # ShamsiDate for Lineage
 [Lineage 15.1](https://github.com/runo280/ShamsiDate/tree/LOS15.1)
 
-[Lineage 16.0](https://github.com/runo280/ShamsiDate/tree/LOS16)
+[Lineage 16.0 & 17.0](https://github.com/runo280/ShamsiDate/tree/LOS16)
 
 
 ## License
     MIT License
     
-    Copyright (c) 2018 Ruhollah Nosrati
+    Copyright (c) 2019 runo280
     
     Permission is hereby granted, free of charge, to any person obtaining a copy
     of this software and associated documentation files (the "Software"), to deal
