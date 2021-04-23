@@ -1,4 +1,4 @@
-# ShamsiDate for Lineage
+# ShamsiDate for Lineage [discontinued]
 [Lineage 15.1](https://github.com/runo280/ShamsiDate/tree/LOS15.1)
 
 [Lineage 16.0 & 17.0](https://github.com/runo280/ShamsiDate/tree/LOS16)
